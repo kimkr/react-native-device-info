@@ -445,15 +445,16 @@ public class RNDeviceModule extends ReactContextBaseJavaModule {
   public boolean isLocationEnabledSync() {
     boolean locationEnabled;
 
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-      LocationManager mLocationManager = (LocationManager) getReactApplicationContext().getSystemService(Context.LOCATION_SERVICE);
-      try {
-        locationEnabled = mLocationManager.isLocationEnabled();
-      } catch (Exception e) {
-        System.err.println("Unable to determine if location enabled. LocationManager was null");
-        return false;
-      }
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+//     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+//       LocationManager mLocationManager = (LocationManager) getReactApplicationContext().getSystemService(Context.LOCATION_SERVICE);
+//       try {
+//         locationEnabled = mLocationManager.isLocationEnabled();
+//       } catch (Exception e) {
+//         System.err.println("Unable to determine if location enabled. LocationManager was null");
+//         return false;
+//       }
+//     }
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
       int locationMode = Settings.Secure.getInt(getReactApplicationContext().getContentResolver(), Settings.Secure.LOCATION_MODE, Settings.Secure.LOCATION_MODE_OFF);
       locationEnabled = locationMode != Settings.Secure.LOCATION_MODE_OFF;
     } else {
